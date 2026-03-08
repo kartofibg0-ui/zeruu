@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoZeruu</title>
+  <meta name="description" content="A warning page about Zeruu." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(10, 15, 30, 0.72);
+      --text: #f4f7fb;
+      --muted: #b8c1d1;
+      --accent: #8ab4ff;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+      --max: 900px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(65, 120, 255, 0.25), transparent 35%),
+        radial-gradient(circle at top right, rgba(0, 220, 180, 0.15), transparent 30%),
+        linear-gradient(180deg, #09101c 0%, #0d1325 100%);
+      line-height: 1.65;
+    }
+
+    a { color: var(--accent); }
+
+    .page {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 72vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      background: #111;
+      isolation: isolate;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.96) contrast(1.02);
+      transform: scale(1.02);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.62) 100%),
+        radial-gradient(circle at center, transparent 10%, rgba(0,0,0,0.28) 100%);
+      z-index: 1;
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 2;
+      width: min(92%, 740px);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.32);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d7e5ff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 4.4rem);
+      line-height: 1.04;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, #76a7ff, #90f0d2);
+      color: #081019;
+      border: none;
+      font-weight: 700;
+    }
+
+    .content {
+      margin-top: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .goodbad {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .box {
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .box h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .box.bad { background: rgba(255, 82, 82, 0.08); }
+    .box.good { background: rgba(58, 205, 150, 0.08); }
+
+    .quote {
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--text);
+      line-height: 1.35;
+      margin: 8px 0 0;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #91a0b8;
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: #eff5ff;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(calc(100% - 20px), var(--max)); padding-top: 20px; }
+      .hero { min-height: 64vh; border-radius: 24px; }
+      .hero-card, .panel { padding: 20px; border-radius: 20px; }
+      .goodbad { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" id="top">
+<img src="https://image2url.com/r2/default/images/1772975784874-d1c62c46-fcd9-4117-8c5c-9d26daa0da91.jpg" alt="Zeruu profile photo" />
+      <div class="hero-card">
+        <span class="eyebrow">NoZeruu</span>
+        <h1>Warning: do not trust Zeruu.</h1>
+        <p class="lead">
+          If Zeruu appears in your messages,
+          your group chat, or near your snacks, proceed with extreme suspicion. DO NOT TRUST HIM!!!!!
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="#how">How to avoid Zeruu</a>
+          <a class="button" href="#examples">See the evidence</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <article class="panel" id="how">
+        <h2>What to do when Zeruu appears</h2>
+        <p>
+          The correct response to Zeruu is simple: ignore him, refuse to do anything Zeruu says,
+          and continue with your live without Zeruu.
+      </article>
+
+      <article class="panel" id="examples">
+        <h2>Examples</h2>
+        <div class="goodbad">
+          <div class="box bad">
+            <h3>Bad</h3>
+            <ul>
+              <li>hey</li>
+              <li>hey Zeruu!</li>
+              <li>I love you Zeruu</li>
+              <li>You are so nice Zeruu</li>
+            </ul>
+          </div>
+          <div class="box good">
+            <h3>Much better</h3>
+            <ul>
+              <li>I don't want to talk t you!</li>
+              <li>Shut up</li>
+              <li>I hate you</li>
+              <li>Go away Zeruu!!!!!</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Why this exists</h2>
+        <p>
+          Because nobody needs Zeruu. Don't talk with Zeruu!!!!.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>The ideal first message</h2>
+        <p>
+          Use this pattern:
+        </p>
+        <p class="quote">
+          “Hey Zeruu — shut up”
+        </p>
+        <p>
+          this all is just a joke btw, please don't take it personally.
+        </p>
+      </article>
+    </section>
+
+    
+  </main>
+</body>
+</html>
